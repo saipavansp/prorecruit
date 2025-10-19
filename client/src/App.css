@@ -1,0 +1,22 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Toast custom styles */
+.Toastify__toast-container {
+  z-index: 9999;
+}
+
+.Toastify__toast--success {
+  background-color: var(--color-success);
+}
+
+.Toastify__toast--error {
+  background-color: var(--color-error);
+}
+
+.Toastify__toast--warning {
+  background-color: var(--color-warning);
+}
