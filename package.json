@@ -1,0 +1,28 @@
+{
+  "name": "pro-recruit-technologies",
+  "version": "1.0.0",
+  "description": "Professional recruitment website for Pro Recruit Technologies",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm start",
+    "install-all": "npm install && cd server && npm install && cd ../client && npm install",
+    "build": "cd client && npm run build",
+    "start": "cd server && npm start"
+  },
+  "keywords": [
+    "recruitment",
+    "job-portal",
+    "react",
+    "nodejs",
+    "mongodb"
+  ],
+  "author": "Pro Recruit Technologies",
+  "license": "Proprietary",
+  "devDependencies": {
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "concurrently": "^7.6.0"
+  }
+}
