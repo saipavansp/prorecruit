@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { FaBriefcase, FaUsers, FaHandshake, FaChartLine, FaLaptopCode, FaHeadset } from 'react-icons/fa';
 import AnimatedCounter from '../components/Common/AnimatedCounter';
 import ServiceCard from '../components/Common/ServiceCard';
+import TestimonialSlider from '../components/Common/TestimonialSlider';
 import { COMPANY_INFO, COMPANY_STATS, CLIENTS, SERVICES } from '../utils/constants';
 import './HomePage.css';
 
@@ -169,6 +170,24 @@ const HomePage: React.FC = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="section testimonials-section bg-light">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="section-header"
+          >
+            <h2>Success Stories</h2>
+            <p>Hear from candidates who found their dream jobs through us</p>
+          </motion.div>
+          
+          <TestimonialSlider />
         </div>
       </section>
 
