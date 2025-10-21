@@ -11,75 +11,34 @@ import {
   FaCalendarAlt,
   FaArrowLeft 
 } from 'react-icons/fa';
-import { jobAPI } from '../services/api';
 import { Job } from '../types';
+import FEATURED_JOBS from '../utils/staticJobs';
 import './JobDetailPage.css';
 
 const JobDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const [job, setJob] = useState<Job | null>(null);
-  const [loading, setLoading] = useState(true);
   const [applying, setApplying] = useState(false);
 
   useEffect(() => {
     if (id) {
-      fetchJobDetails();
-      incrementViews();
+      // Find job from static data
+      const foundJob = FEATURED_JOBS.find(j => j._id === id);
+      if (foundJob) {
+        setJob(foundJob);
+      } else {
+        toast.error('Job not found');
+        navigate('/jobs');
+      }
     }
-  }, [id]);
-
-  const fetchJobDetails = async () => {
-    setLoading(true);
-    try {
-      const response = await jobAPI.getById(id!);
-      setJob(response.data!);
-    } catch (error) {
-      console.error('Error fetching job details:', error);
-      toast.error('Failed to load job details');
-      navigate('/jobs');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const incrementViews = async () => {
-    try {
-      await jobAPI.incrementView(id!);
-    } catch (error) {
-      console.error('Error incrementing views:', error);
-    }
-  };
+  }, [id, navigate]);
 
   const handleApply = () => {
-    // Check if candidate is registered
-    const candidateId = localStorage.getItem('candidateId');
-    if (!candidateId) {
-      toast.info('Please register first to apply for this job');
-      navigate('/candidates/register');
-      return;
-    }
-
-    setApplying(true);
-    // In a real app, you would call the apply API here
-    setTimeout(() => {
-      toast.success('Application submitted successfully!');
-      setApplying(false);
-    }, 1500);
+    // Direct user to register as candidate
+    toast.info('Please register first to apply for this job');
+    navigate('/candidates/register');
   };
-
-  if (loading) {
-    return (
-      <div className="job-detail-page">
-        <div className="container">
-          <div className="loading">
-            <div className="spinner"></div>
-            <p>Loading job details...</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   if (!job) {
     return (
