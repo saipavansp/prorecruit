@@ -1,7 +1,27 @@
 .jobs-page {
   padding: 2rem 0;
-  background-color: var(--color-light-gray);
+  background: linear-gradient(135deg, #f5f9fc 0%, #ffffff 50%, #f8fbfd 100%);
   min-height: calc(100vh - 80px);
+  position: relative;
+  overflow: hidden;
+}
+
+.jobs-page::before {
+  content: '';
+  position: absolute;
+  top: 25%;
+  left: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(93, 173, 226, 0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+  animation: float 13s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-18px) translateX(12px); }
 }
 
 .jobs-page h1 {
@@ -23,6 +43,8 @@
   grid-template-columns: 280px 1fr;
   gap: 2rem;
   align-items: start;
+  position: relative;
+  z-index: 1;
 }
 
 /* Filters Sidebar */

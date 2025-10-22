@@ -28,9 +28,13 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       transition={{ duration: 0.6, delay }}
       whileHover={{ y: -10, transition: { duration: 0.3 } }}
     >
-      <div className="service-icon">
-        {React.createElement(Icon)}
-      </div>
+      <motion.div 
+        className="service-icon"
+        whileHover={{ scale: 1.1, rotate: 5 }}
+        transition={{ duration: 0.3 }}
+      >
+        {React.createElement(Icon, { className: 'icon-svg' })}
+      </motion.div>
       <h3>{title}</h3>
       <p>{description}</p>
       {link && (

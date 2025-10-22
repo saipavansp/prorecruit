@@ -82,12 +82,14 @@
 }
 
 .contact-item a {
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.9);
   transition: color var(--transition-fast);
+  text-decoration: none;
 }
 
 .contact-item a:hover {
-  color: var(--color-primary);
+  color: var(--color-white);
+  text-decoration: underline;
 }
 
 .contact-item span {
