@@ -66,11 +66,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="footer-bottom">
-          <p>&copy; {currentYear} CodeLoom Technologies. All rights reserved.</p>
-          <div className="footer-bottom-links">
-            <Link to="/privacy-policy">Privacy Policy</Link>
-            <Link to="/terms-conditions">Terms & Conditions</Link>
-          </div>
+          <p>&copy; {currentYear} {COMPANY_INFO.name}. All rights reserved.</p>
         </div>
       </div>
     </footer>

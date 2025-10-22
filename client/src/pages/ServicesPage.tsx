@@ -127,8 +127,8 @@ const ServicesPage: React.FC = () => {
           <h2>Ready to Find Your Perfect Match?</h2>
           <p>Let us help you build your dream team or find your dream job.</p>
           <div className="cta-buttons">
-            <a href="/contact" className="btn btn-primary">Get Started</a>
-            <a href="/candidates/register" className="btn btn-outline">Register as Candidate</a>
+            <Link to="/contact" className="btn btn-primary">Get Started</Link>
+            <Link to="/candidates/register" className="btn btn-outline">Register as Candidate</Link>
           </div>
         </motion.section>
       </div>
