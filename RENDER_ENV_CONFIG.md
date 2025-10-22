@@ -40,7 +40,7 @@ https://prorecruit-frontend.onrender.com
 
 ```
 ADMIN_EMAIL
-suryaraj@prorecruittechnologies.com
+info@prorecruittechnologies.com
 ```
 
 ```

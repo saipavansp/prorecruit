@@ -8,7 +8,7 @@ export const COMPANY_INFO = {
   established: 'January 2024',
   location: 'Bangalore',
   address: '#91/3 Ground Floor, Right Side, 5th Cross, Opp. Anjan Cinemas, Lakshminarayanapuram, Binnipete, Magadi Road, Bengaluru, Karnataka 560023',
-  email: 'suryaraj@prorecruittechnologies.com',
+  email: 'info@prorecruittechnologies.com',
   phone: '+91 8867825850',
   employeeCount: '10-30'
 };
@@ -115,7 +115,7 @@ export const INDIAN_CITIES = [
 export const COMPANY_STATS = [
   { label: 'Candidates Placed', value: 500, suffix: '+' },
   { label: 'Client Companies', value: 50, suffix: '+' },
-  { label: 'Years of Experience', value: 1, suffix: '' },
+  { label: 'Years of Experience', value: 1.9, suffix: '' },
   { label: 'Success Rate', value: 95, suffix: '%' }
 ];
 
