@@ -20,17 +20,37 @@
 }
 
 .service-icon {
-  width: 80px;
-  height: 80px;
-  background-color: var(--color-primary);
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, #3498db 100%);
   color: var(--color-white);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 1.5rem;
   transition: all var(--transition-base);
+  box-shadow: 0 10px 30px rgba(93, 173, 226, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.service-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform var(--transition-base);
+}
+
+.service-card:hover .service-icon::before {
+  transform: scale(1);
 }
 
 .service-card:hover .service-icon {

@@ -19,7 +19,13 @@ const JobsPage: React.FC = () => {
   const [showFilters, setShowFilters] = useState(false);
 
   useEffect(() => {
-    fetchJobs();
+    // Don't fetch jobs until backend is fully configured
+    // Show empty state for now
+    setLoading(false);
+    setJobs([]);
+    
+    // Uncomment this when backend MongoDB is connected:
+    // fetchJobs();
   }, []);
 
   const fetchJobs = async () => {
