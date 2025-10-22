@@ -54,6 +54,12 @@ const Navbar: React.FC = () => {
       <div className="container">
         <div className="navbar-content">
           <div className="navbar-brand" onClick={handleLogoClick} style={{ cursor: 'pointer' }}>
+            <img 
+              src="/images/logo.svg" 
+              alt={COMPANY_INFO.name} 
+              className="navbar-logo"
+              onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
+            />
             <h2>{COMPANY_INFO.name}</h2>
           </div>
 

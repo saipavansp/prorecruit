@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaMapMarkerAlt, FaBriefcase, FaClock, FaRupeeSign, FaFilter } from 'react-icons/fa';
+import { jobAPI } from '../services/api';
 import { Job } from '../types';
 import { JOB_TYPES, SKILL_CATEGORIES } from '../utils/constants';
-import FEATURED_JOBS from '../utils/staticJobs';
 import './JobsPage.css';
 
 const JobsPage: React.FC = () => {
+  const [jobs, setJobs] = useState<Job[]>([]);
+  const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState({
     category: '',
     jobType: '',
@@ -15,6 +17,24 @@ const JobsPage: React.FC = () => {
     minExperience: ''
   });
   const [showFilters, setShowFilters] = useState(false);
+
+  useEffect(() => {
+    fetchJobs();
+  }, []);
+
+  const fetchJobs = async () => {
+    setLoading(true);
+    try {
+      const response = await jobAPI.getActive();
+      setJobs(response.data);
+    } catch (error) {
+      console.error('Error fetching jobs:', error);
+      // If backend is unavailable, show empty state
+      setJobs([]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleFilterChange = (name: string, value: string) => {
     setFilters(prev => ({ ...prev, [name]: value }));
@@ -29,8 +49,8 @@ const JobsPage: React.FC = () => {
     });
   };
 
-  // Filter static jobs based on selected filters
-  const filteredJobs = FEATURED_JOBS.filter(job => {
+  // Filter jobs based on selected filters
+  const filteredJobs = jobs.filter(job => {
     if (filters.category && job.category !== filters.category) return false;
     if (filters.jobType && job.jobType !== filters.jobType) return false;
     if (filters.location && !job.location.toLowerCase().includes(filters.location.toLowerCase())) return false;
@@ -124,7 +144,12 @@ const JobsPage: React.FC = () => {
               </button>
             </div>
 
-            {filteredJobs.length === 0 ? (
+            {loading ? (
+              <div className="loading">
+                <div className="spinner"></div>
+                <p>Loading jobs...</p>
+              </div>
+            ) : filteredJobs.length === 0 ? (
               <div className="no-jobs">
                 <p>No jobs found matching your criteria.</p>
                 <button className="btn btn-primary" onClick={clearFilters}>

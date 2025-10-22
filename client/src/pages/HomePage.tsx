@@ -14,39 +14,69 @@ const HomePage: React.FC = () => {
       {/* Hero Section */}
       <section className="hero-section">
         <div className="hero-background">
-          <div className="hero-overlay"></div>
-          <img src="/images/hero/hero-bg.jpg" alt="Pro Recruit Technologies" className="hero-bg-image" />
+          <div className="hero-pattern"></div>
           <img src="/images/hero/circle-1.svg" alt="decorative" className="hero-circle hero-circle-1" />
           <img src="/images/hero/circle-2.svg" alt="decorative" className="hero-circle hero-circle-2" />
         </div>
         <div className="container">
-          <motion.div
-            className="hero-content"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h1 className="hero-title">
-              Welcome to <span className="text-primary">{COMPANY_INFO.name}</span>
-            </h1>
-            <p className="hero-tagline">{COMPANY_INFO.tagline}</p>
-            <p className="hero-description">
-              Your trusted partner in recruitment, connecting talented professionals with leading organizations across India.
-            </p>
-            <div className="hero-contact">
-              <a href={`tel:${COMPANY_INFO.phone.replace(/\s+/g, '')}`} className="hero-phone">
-                {COMPANY_INFO.phone}
-              </a>
-            </div>
-            <div className="hero-buttons">
-              <Link to="/candidates/register" className="btn btn-primary">
-                Register Now
-              </Link>
-              <Link to="/jobs" className="btn btn-outline">
-                View Jobs
-              </Link>
-            </div>
-          </motion.div>
+          <div className="hero-grid">
+            <motion.div
+              className="hero-content-left"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              <p className="hero-subtitle">LETS START YOUR CAREERS HERE!</p>
+              <h1 className="hero-title">
+                Looking for a career change? Browse our job listings now!
+              </h1>
+              <p className="hero-description">
+                {COMPANY_INFO.tagline} - Your trusted partner in recruitment, connecting talented 
+                professionals with leading organizations across India.
+              </p>
+              
+              <div className="hero-stats">
+                <div className="stat-item">
+                  <div className="stat-avatars">
+                    <span className="avatar">👤</span>
+                    <span className="avatar">👤</span>
+                    <span className="avatar">👤</span>
+                    <span className="avatar">👤</span>
+                    <span className="avatar">👤</span>
+                  </div>
+                  <span className="stat-text">540 K+ Member Active</span>
+                </div>
+              </div>
+
+              <div className="hero-contact">
+                <a href={`tel:${COMPANY_INFO.phone.replace(/\s+/g, '')}`} className="hero-phone">
+                  📞 {COMPANY_INFO.phone}
+                </a>
+              </div>
+
+              <div className="hero-buttons">
+                <Link to="/jobs" className="btn btn-primary btn-lg">
+                  BROWSE JOB
+                </Link>
+              </div>
+            </motion.div>
+
+            <motion.div
+              className="hero-content-right"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <div className="hero-image-container">
+                <div className="hero-shape-bg"></div>
+                <img 
+                  src="/images/hero/professional-person.png" 
+                  alt="Professional" 
+                  className="hero-person-image"
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -164,9 +194,12 @@ const HomePage: React.FC = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
               >
-                <div className="client-logo-placeholder">
-                  <h3>{client.name}</h3>
-                </div>
+                <img 
+                  src={client.logo} 
+                  alt={client.name}
+                  className="client-logo-img"
+                  loading="lazy"
+                />
               </motion.div>
             ))}
           </div>

@@ -1,0 +1,32 @@
+📸 Image Placement Guide
+=======================
+
+Place your images in these exact locations:
+
+1. LOGO (for navbar):
+   → client/public/images/logo.png
+   Size: 50x50px or 100x100px
+   Format: PNG (transparent background)
+   Target: < 20KB
+
+2. HERO BACKGROUND:
+   → client/public/images/hero/hero-bg.jpg
+   Size: 1920x1080px
+   Format: JPG
+   Target: < 200KB
+
+3. CLIENT LOGOS:
+   → client/public/images/clients/sagility.png
+   → client/public/images/clients/startek.png
+   → client/public/images/clients/ison.png
+   → client/public/images/clients/altruist.png
+   Size: ~200x100px each
+   Format: PNG (transparent background)
+   Target: < 30KB each
+
+IMPORTANT:
+- Compress all images using https://tinypng.com before adding
+- Use exact filenames as shown above
+- Delete this file after adding images
+
+Once images are added, tell the developer and they'll update the code!
