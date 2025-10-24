@@ -48,15 +48,12 @@ const HomePage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="hero-contact">
-                <a href={`tel:${COMPANY_INFO.phone.replace(/\s+/g, '')}`} className="hero-phone">
-                  📞 {COMPANY_INFO.phone}
-                </a>
-              </div>
-
               <div className="hero-buttons">
-                <Link to="/jobs" className="btn btn-primary btn-lg">
-                  BROWSE JOB
+                <Link to="/candidates/register" className="btn btn-primary btn-lg">
+                  REGISTER NOW
+                </Link>
+                <Link to="/jobs" className="btn btn-outline btn-lg">
+                  BROWSE JOBS
                 </Link>
               </div>
             </motion.div>

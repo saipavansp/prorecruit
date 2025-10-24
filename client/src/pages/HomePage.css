@@ -138,25 +138,6 @@
   font-size: 1.125rem;
 }
 
-.hero-contact {
-  margin-bottom: 2rem;
-}
-
-.hero-phone {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--color-dark);
-  text-decoration: none;
-  transition: color var(--transition-base);
-}
-
-.hero-phone:hover {
-  color: var(--color-primary);
-}
-
 .hero-buttons {
   display: flex;
   gap: 1rem;
@@ -169,12 +150,27 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+}
+
+.hero-buttons .btn-primary.btn-lg {
   background-color: #6ABF4B;
   border-color: #6ABF4B;
 }
 
-.hero-buttons .btn-lg:hover {
+.hero-buttons .btn-primary.btn-lg:hover {
   background-color: #5aa83d;
+  transform: translateY(-2px);
+}
+
+.hero-buttons .btn-outline.btn-lg {
+  background-color: transparent;
+  color: var(--color-dark);
+  border: 2px solid var(--color-dark);
+}
+
+.hero-buttons .btn-outline.btn-lg:hover {
+  background-color: var(--color-dark);
+  color: var(--color-white);
   transform: translateY(-2px);
 }
 
