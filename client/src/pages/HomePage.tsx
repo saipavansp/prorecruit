@@ -222,7 +222,10 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Join Community Section */}
-      <section className="section join-community-section">
+      <section 
+        className="section join-community-section"
+        style={{ backgroundImage: 'url(/images/services/services-bg.jpg)' }}
+      >
         <div className="join-community-overlay"></div>
         <div className="container">
           <motion.div
