@@ -9,7 +9,7 @@ export const COMPANY_INFO = {
   location: 'Bangalore',
   address: '#91/3 Ground Floor, Right Side, 5th Cross, Opp. Anjan Cinemas, Lakshminarayanapuram, Binnipete, Magadi Road, Bengaluru, Karnataka 560023',
   email: 'info@prorecruittechnologies.com',
-  phone: '+91 8867825850',
+  phone: '+91 9113610407',
   employeeCount: '10-30'
 };
 
