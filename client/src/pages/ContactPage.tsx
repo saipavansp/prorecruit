@@ -29,25 +29,18 @@ const ContactPage: React.FC = () => {
 
   return (
     <div className="contact-page">
-      {/* Contact Hero */}
-      <div className="contact-hero">
-        <div className="contact-hero-overlay"></div>
-        <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="contact-hero-content"
-          >
-            <h1>Contact Us</h1>
-            <p className="contact-intro">
-              Get in touch with us for any queries about our recruitment services
-            </p>
-          </motion.div>
-        </div>
-      </div>
-
       <div className="container">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="contact-page-header"
+        >
+          <h1>Contact Us</h1>
+          <p className="contact-intro">
+            Get in touch with us for any queries about our recruitment services
+          </p>
+        </motion.div>
 
         <div className="contact-content">
           {/* Contact Form */}
