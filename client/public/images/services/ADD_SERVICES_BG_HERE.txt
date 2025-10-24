@@ -1,0 +1,19 @@
+📸 Add Your Services Background Image Here
+==========================================
+
+File name: services-bg.jpg
+Location: This folder (client/public/images/services/)
+
+Image Specs:
+- Size: 1920x1080px (Full HD) or larger
+- Format: JPG
+- Content: Professional office/business team image
+- Target size: < 300KB (compress at tinypng.com)
+
+This image will appear in the "Join our community" section on homepage
+with stats overlay (540K+ Members, 14K+ Companies, etc.)
+
+Current: Will show as dark blue/teal overlay until you add the image
+
+Just add your image as: services-bg.jpg
+Then push to GitHub!

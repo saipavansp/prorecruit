@@ -1,41 +1,53 @@
 // Candidate types
 export interface Candidate {
   _id?: string;
+  candidateType: 'Fresher' | 'Experienced';
   firstName: string;
   lastName: string;
   fullNameAadhar: string;
   email: string;
   phone: string;
-  totalExperience: number;
-  currentCTC: number;
-  expectedCTC: number;
-  noticePeriod: string;
-  currentCompany?: string;
-  currentDesignation?: string;
-  currentJobTitle?: string;
+  address?: string;
+  
+  // Skills
   skills: string[];
-  skillCategory: 'IT' | 'Non-IT';
-  preferredLocations: string[];
-  openToRelocation: boolean;
-  resumeUrl?: string;
-  resumeFileName?: string;
-  latestResumeUrl?: string;
-  latestResumeFileName?: string;
-  linkedinProfile?: string;
-  portfolioUrl?: string;
-  experienceSummary?: string;
+  skillCategory?: 'IT' | 'Non-IT';
+  
+  // Education
   education?: {
     highestQualification?: string;
     institution?: string;
     graduationYear?: number;
+    degree?: string;
+    fieldOfStudy?: string;
   };
-  address?: {
-    street?: string;
-    postalCode?: string;
-    city?: string;
-    province?: string;
-    country?: string;
-  };
+  
+  // For Experienced Only
+  totalExperience?: number;
+  currentCompany?: string;
+  currentDesignation?: string;
+  joiningDate?: string;
+  relievingDate?: string;
+  currentSalary?: number;
+  noticePeriod?: string;
+  currentCTC?: number;
+  expectedCTC?: number;
+  currentJobTitle?: string;
+  
+  // Resume
+  resumeUrl?: string;
+  resumeFileName?: string;
+  latestResumeUrl?: string;
+  latestResumeFileName?: string;
+  
+  // Optional
+  linkedinProfile?: string;
+  portfolioUrl?: string;
+  experienceSummary?: string;
+  preferredLocations?: string[];
+  openToRelocation?: boolean;
+  
+  // System
   status?: string;
   createdAt?: string;
   updatedAt?: string;

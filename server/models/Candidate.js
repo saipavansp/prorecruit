@@ -1,6 +1,13 @@
 const mongoose = require('mongoose');
 
 const candidateSchema = new mongoose.Schema({
+  // Candidate Type
+  candidateType: {
+    type: String,
+    required: [true, 'Candidate type is required'],
+    enum: ['Fresher', 'Experienced']
+  },
+  
   // Personal Details
   firstName: {
     type: String,
@@ -31,25 +38,21 @@ const candidateSchema = new mongoose.Schema({
     match: [/^[6-9]\d{9}$/, 'Please provide a valid Indian phone number']
   },
   
-  // Professional Information
+  // Professional Information (For Experienced)
   totalExperience: {
     type: Number,
-    required: [true, 'Total experience is required'],
     min: 0
   },
   currentCTC: {
     type: Number,
-    required: [true, 'Current CTC is required'],
     min: 0
   },
   expectedCTC: {
     type: Number,
-    required: [true, 'Expected CTC is required'],
     min: 0
   },
   noticePeriod: {
     type: String,
-    required: [true, 'Notice period is required'],
     enum: ['Immediate', '15 days', '30 days', '60 days', '90 days', 'More than 90 days']
   },
   currentCompany: {
@@ -63,6 +66,16 @@ const candidateSchema = new mongoose.Schema({
   currentJobTitle: {
     type: String,
     trim: true
+  },
+  joiningDate: {
+    type: Date
+  },
+  relievingDate: {
+    type: Date
+  },
+  currentSalary: {
+    type: Number,
+    min: 0
   },
   
   // Skills

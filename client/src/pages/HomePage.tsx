@@ -224,27 +224,76 @@ const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="section cta-section">
+      {/* Join Community Section */}
+      <section className="section join-community-section">
+        <div className="join-community-overlay"></div>
         <div className="container">
           <motion.div
-            className="cta-content"
+            className="join-community-content"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2>Ready to Take the Next Step in Your Career?</h2>
-            <p>Join thousands of professionals who have found their dream jobs through us</p>
-            <div className="cta-buttons">
-              <Link to="/candidates/register" className="btn btn-primary">
-                Register as Candidate
-              </Link>
-              <Link to="/contact" className="btn btn-outline">
-                Contact Us
+            <h2>Join our community of talented professionals by applying for a job today!</h2>
+            <p>Your trusted partner in recruitment, connecting talented professionals with leading organizations across India.</p>
+            <div className="join-community-button">
+              <Link to="/jobs" className="btn btn-discover">
+                DISCOVER MORE
               </Link>
             </div>
           </motion.div>
+        </div>
+
+        {/* Stats Section Below */}
+        <div className="community-stats">
+          <div className="container">
+            <div className="stats-grid">
+              <motion.div 
+                className="stat-box"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                <h3 className="stat-number green">540K+</h3>
+                <p className="stat-label">Member Active</p>
+              </motion.div>
+
+              <motion.div 
+                className="stat-box"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+              >
+                <h3 className="stat-number green">14K+</h3>
+                <p className="stat-label">Companies</p>
+              </motion.div>
+
+              <motion.div 
+                className="stat-box"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+              >
+                <h3 className="stat-number green">270+</h3>
+                <p className="stat-label">Expert Trainers</p>
+              </motion.div>
+
+              <motion.div 
+                className="stat-box"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                <h3 className="stat-number green">15+</h3>
+                <p className="stat-label">Years of Experience</p>
+              </motion.div>
+            </div>
+          </div>
         </div>
       </section>
 
