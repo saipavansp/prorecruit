@@ -130,22 +130,21 @@ const CandidateRegistrationPage: React.FC = () => {
 
       // Skills
       if (data.skillCategory) formData.append('skillCategory', data.skillCategory);
-      formData.append('skills', (data.skills || []).join(','));
+      if (data.skills && data.skills.length > 0) {
+        formData.append('skills', data.skills.join(','));
+      }
 
-      // Address
-      if (data.address?.street) formData.append('address.street', data.address.street);
-      if (data.address?.postalCode) formData.append('address.postalCode', data.address.postalCode);
-      if (data.address?.city) formData.append('address.city', data.address.city);
-      if (data.address?.province) formData.append('address.province', data.address.province);
-      if (data.address?.country) formData.append('address.country', data.address.country);
+      // Address (simple string field)
+      if (data.address) formData.append('address', data.address);
 
       // Preferences
-      formData.append('preferredLocations', (data.preferredLocations || []).join(','));
+      if (data.preferredLocations && data.preferredLocations.length > 0) {
+        formData.append('preferredLocations', data.preferredLocations.join(','));
+      }
       if (data.openToRelocation) formData.append('openToRelocation', String(data.openToRelocation));
 
-      // Files
+      // Resume
       formData.append('resume', resumeFile);
-      if (latestResumeFile) formData.append('latestResume', latestResumeFile);
 
       const response = await candidateAPI.register(formData);
       
