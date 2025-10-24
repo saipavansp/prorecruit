@@ -316,7 +316,7 @@
 /* Join Community Section */
 .join-community-section {
   position: relative;
-  background-image: url('/images/services/services-bg.jpg');
+  background-color: #2C5F7C;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
