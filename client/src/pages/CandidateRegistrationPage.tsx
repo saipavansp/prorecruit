@@ -119,17 +119,17 @@ const CandidateRegistrationPage: React.FC = () => {
       formData.append('email', data.email);
       formData.append('phone', data.phone);
 
-      // Professional info
-      formData.append('totalExperience', String(data.totalExperience));
-      formData.append('currentCTC', String(data.currentCTC));
-      formData.append('expectedCTC', String(data.expectedCTC));
-      formData.append('noticePeriod', data.noticePeriod);
+      // Professional info (only if provided - for experienced candidates)
+      if (data.totalExperience !== undefined) formData.append('totalExperience', String(data.totalExperience));
+      if (data.currentCTC !== undefined) formData.append('currentCTC', String(data.currentCTC));
+      if (data.expectedCTC !== undefined) formData.append('expectedCTC', String(data.expectedCTC));
+      if (data.noticePeriod) formData.append('noticePeriod', data.noticePeriod);
       if (data.currentCompany) formData.append('currentCompany', data.currentCompany);
       if (data.currentDesignation) formData.append('currentDesignation', data.currentDesignation);
       if (data.currentJobTitle) formData.append('currentJobTitle', data.currentJobTitle);
 
       // Skills
-      formData.append('skillCategory', data.skillCategory);
+      if (data.skillCategory) formData.append('skillCategory', data.skillCategory);
       formData.append('skills', (data.skills || []).join(','));
 
       // Address
