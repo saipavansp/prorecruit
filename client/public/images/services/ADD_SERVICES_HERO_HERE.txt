@@ -1,0 +1,19 @@
+📸 Add Services Page Hero Image Here
+======================================
+
+File name: services-hero.jpg
+Location: This folder (client/public/images/services/)
+
+Image Specs:
+- Size: 1920x600px (wide banner)
+- Format: JPG  
+- Content: Recruitment/hiring/services theme
+- Target size: < 200KB (compress at tinypng.com)
+
+This will appear at the TOP of the Services page
+with dark blue overlay and white text
+
+Already added: services-bg.jpg ✓ (for Join Community section)
+
+Just add your image as: services-hero.jpg
+Then push to GitHub!

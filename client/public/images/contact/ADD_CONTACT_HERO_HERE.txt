@@ -1,0 +1,17 @@
+📸 Add Contact Page Hero Image Here
+=====================================
+
+File name: contact-hero.jpg
+Location: This folder (client/public/images/contact/)
+
+Image Specs:
+- Size: 1920x600px (wide banner)  
+- Format: JPG
+- Content: Customer service or communication theme
+- Target size: < 200KB (compress at tinypng.com)
+
+This will appear at the TOP of the Contact page
+with green overlay and white text
+
+Just add your image as: contact-hero.jpg
+Then push to GitHub!

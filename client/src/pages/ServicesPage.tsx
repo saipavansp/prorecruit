@@ -55,19 +55,27 @@ const ServicesPage: React.FC = () => {
 
   return (
     <div className="services-page">
+      {/* Services Hero Banner */}
+      <div className="services-hero">
+        <div className="services-hero-overlay"></div>
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="services-hero-content"
+          >
+            <h1>Our Services</h1>
+            <p className="services-intro">
+              Pro Recruit Technologies offers comprehensive recruitment solutions tailored to meet your specific needs. 
+              Whether you're looking for IT specialists, BPO professionals, or executive talent, we have the expertise 
+              and network to deliver results.
+            </p>
+          </motion.div>
+        </div>
+      </div>
+
       <div className="container">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <h1>Our Services</h1>
-          <p className="services-intro">
-            Pro Recruit Technologies offers comprehensive recruitment solutions tailored to meet your specific needs. 
-            Whether you're looking for IT specialists, BPO professionals, or executive talent, we have the expertise 
-            and network to deliver results.
-          </p>
-        </motion.div>
 
         <div className="services-list">
           {serviceDetails.map((service, index) => (

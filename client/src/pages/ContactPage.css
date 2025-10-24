@@ -1,40 +1,47 @@
 .contact-page {
-  padding: 2rem 0;
   background: linear-gradient(135deg, #f8fbfd 0%, #ffffff 50%, #f5f9fc 100%);
   position: relative;
-  overflow: hidden;
   min-height: calc(100vh - 80px);
 }
 
-.contact-page::before {
-  content: '';
-  position: absolute;
-  top: 20%;
-  right: -100px;
-  width: 280px;
-  height: 280px;
-  background: radial-gradient(circle, rgba(93, 173, 226, 0.07) 0%, transparent 70%);
-  border-radius: 50%;
-  z-index: 0;
-  animation: float 11s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0) translateX(0); }
-  50% { transform: translateY(-15px) translateX(8px); }
-}
-
-.contact-page h1 {
-  text-align: center;
-  color: var(--color-dark);
-  margin-bottom: 0.5rem;
-}
-
-.contact-intro {
-  text-align: center;
-  color: var(--color-secondary);
+/* Contact Hero */
+.contact-hero {
+  position: relative;
+  background-image: url('/images/contact/contact-hero.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 5rem 0;
   margin-bottom: 3rem;
+}
+
+.contact-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(106, 191, 75, 0.85) 0%, rgba(90, 168, 61, 0.9) 100%);
+  z-index: 0;
+}
+
+.contact-hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: var(--color-white);
+}
+
+.contact-hero-content h1 {
+  font-size: 3rem;
+  color: var(--color-white);
+  margin-bottom: 1rem;
+}
+
+.contact-hero-content .contact-intro {
   font-size: 1.125rem;
+  color: var(--color-white);
+  opacity: 0.95;
+  margin: 0;
 }
 
 /* Content Layout */

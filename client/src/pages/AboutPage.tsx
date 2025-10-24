@@ -7,13 +7,28 @@ import './AboutPage.css';
 const AboutPage: React.FC = () => {
   return (
     <div className="about-page">
+      {/* About Banner */}
+      <div className="about-banner">
+        <div className="about-banner-overlay"></div>
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="about-banner-content"
+          >
+            <h1>About {COMPANY_INFO.name}</h1>
+            <p>Making dreams and aspirations come true since {COMPANY_INFO.established}</p>
+          </motion.div>
+        </div>
+      </div>
+
       <div className="container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1>About {COMPANY_INFO.name}</h1>
           
           <section className="about-intro">
             <p className="lead">
