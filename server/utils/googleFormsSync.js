@@ -3,26 +3,43 @@ const { google } = require('googleapis');
 // Initialize Google Sheets API
 const initializeGoogleSheets = async () => {
   try {
-    // Use service account from environment variable
-    const serviceAccountJSON = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
-    
-    if (!serviceAccountJSON) {
-      console.log('Google service account not configured');
-      return null;
+    // Option 1: Use full JSON (if provided)
+    if (process.env.GOOGLE_SERVICE_ACCOUNT_JSON) {
+      const credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
+      
+      const auth = new google.auth.GoogleAuth({
+        credentials: credentials,
+        scopes: ['https://www.googleapis.com/auth/spreadsheets']
+      });
+      
+      const authClient = await auth.getClient();
+      return google.sheets({ version: 'v4', auth: authClient });
     }
     
-    const credentials = JSON.parse(serviceAccountJSON);
+    // Option 2: Use individual fields (easier to manage)
+    if (process.env.GOOGLE_CLIENT_EMAIL && process.env.GOOGLE_PRIVATE_KEY) {
+      const credentials = {
+        type: 'service_account',
+        project_id: process.env.GOOGLE_PROJECT_ID || 'prorecruit-477018',
+        private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+        client_email: process.env.GOOGLE_CLIENT_EMAIL,
+        token_uri: 'https://oauth2.googleapis.com/token',
+        universe_domain: 'googleapis.com'
+      };
+      
+      const auth = new google.auth.GoogleAuth({
+        credentials: credentials,
+        scopes: ['https://www.googleapis.com/auth/spreadsheets']
+      });
+      
+      const authClient = await auth.getClient();
+      return google.sheets({ version: 'v4', auth: authClient });
+    }
     
-    const auth = new google.auth.GoogleAuth({
-      credentials: credentials,
-      scopes: ['https://www.googleapis.com/auth/spreadsheets']
-    });
-    
-    const authClient = await auth.getClient();
-    
-    return google.sheets({ version: 'v4', auth: authClient });
+    console.log('Google Sheets not configured - need either GOOGLE_SERVICE_ACCOUNT_JSON or GOOGLE_CLIENT_EMAIL+GOOGLE_PRIVATE_KEY');
+    return null;
   } catch (error) {
-    console.error('Google Sheets initialization error:', error);
+    console.error('Google Sheets initialization error:', error.message);
     return null;
   }
 };
