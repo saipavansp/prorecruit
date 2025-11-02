@@ -1,11 +1,27 @@
-const nodemailer = require('nodemailer');
+let nodemailer;
+try {
+  nodemailer = require('nodemailer');
+  console.log('✓ Nodemailer loaded successfully');
+} catch (error) {
+  console.error('✗ Nodemailer failed to load:', error.message);
+  nodemailer = null;
+}
+
 const path = require('path');
 const fs = require('fs').promises;
 
 // Create transporter
 const createTransporter = () => {
+  if (!nodemailer) {
+    throw new Error('Nodemailer module not available - please install: npm install nodemailer');
+  }
+  
   if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
-    throw new Error('Email credentials not configured');
+    throw new Error('Email credentials not configured in environment variables');
+  }
+  
+  if (typeof nodemailer.createTransporter !== 'function') {
+    throw new Error('Nodemailer createTransporter is not a function - module may be corrupted');
   }
   
   return nodemailer.createTransporter({
