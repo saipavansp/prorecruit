@@ -8,48 +8,40 @@ import './ServicesPage.css';
 const ServicesPage: React.FC = () => {
   const serviceDetails = [
     {
-      id: 'it-recruitment',
-      icon: FaLaptopCode,
-      title: SERVICES.IT.title,
-      description: SERVICES.IT.description,
-      details: 'We specialize in recruiting top IT talent across various technologies and domains.',
-      skills: IT_SKILLS.slice(0, 15) // Show first 15 skills
-    },
-    {
-      id: 'non-it-recruitment',
-      icon: FaHeadset,
-      title: SERVICES.NON_IT.title,
-      description: SERVICES.NON_IT.description,
-      details: 'Comprehensive recruitment solutions for BPO, KPO, Sales, Marketing, and more.',
-      skills: NON_IT_SKILLS.slice(0, 15)
-    },
-    {
-      id: 'permanent-staffing',
+      id: 'consumer-sector',
       icon: FaBriefcase,
-      title: SERVICES.PERMANENT.title,
-      description: SERVICES.PERMANENT.description,
-      details: 'We help you find permanent employees who align with your company culture and long-term goals.'
+      title: SERVICES.CONSUMER.title,
+      items: SERVICES.CONSUMER.items
     },
     {
-      id: 'contract-staffing',
-      icon: FaFileContract,
-      title: SERVICES.CONTRACT.title,
-      description: SERVICES.CONTRACT.description,
-      details: 'Flexible staffing solutions for project-based needs, seasonal demands, and specialized assignments.'
-    },
-    {
-      id: 'executive-search',
-      icon: FaUserTie,
-      title: SERVICES.EXECUTIVE.title,
-      description: SERVICES.EXECUTIVE.description,
-      details: 'Confidential and targeted search for C-level executives and senior leadership positions.'
-    },
-    {
-      id: 'volume-hiring',
+      id: 'industrial-sector',
       icon: FaUsers,
-      title: SERVICES.VOLUME.title,
-      description: SERVICES.VOLUME.description,
-      details: 'Efficient large-scale recruitment for startups, expanding businesses, and new project launches.'
+      title: SERVICES.INDUSTRIAL.title,
+      items: SERVICES.INDUSTRIAL.items
+    },
+    {
+      id: 'retail-ecommerce',
+      icon: FaLaptopCode,
+      title: SERVICES.RETAIL.title,
+      items: SERVICES.RETAIL.items
+    },
+    {
+      id: 'emerging-sector',
+      icon: FaHeadset,
+      title: SERVICES.EMERGING.title,
+      items: SERVICES.EMERGING.items
+    },
+    {
+      id: 'it-sector',
+      icon: FaLaptopCode,
+      title: SERVICES.IT_SECTOR.title,
+      items: SERVICES.IT_SECTOR.items
+    },
+    {
+      id: 'telecom-sector',
+      icon: FaUserTie,
+      title: SERVICES.TELECOM.title,
+      items: SERVICES.TELECOM.items
     }
   ];
 
@@ -92,33 +84,18 @@ const ServicesPage: React.FC = () => {
                 {React.createElement(service.icon, { className: 'service-icon' })}
                 <div>
                   <h2>{service.title}</h2>
-                  <p className="service-description">{service.description}</p>
                 </div>
               </div>
               
               <div className="service-content">
-                <p>{service.details}</p>
-                
-                {service.skills && (
-                  <div className="skills-showcase">
-                    <h3>Key Areas</h3>
-                    <div className="skills-list">
-                      {service.skills.map((skill) => (
-                        <span key={skill} className="skill-tag">{skill}</span>
-                      ))}
-                      <span className="skill-tag more">And many more...</span>
-                    </div>
-                  </div>
-                )}
-                
-                <div className="service-benefits">
-                  <h3>Why Choose Us</h3>
+                <div className="service-items-list">
                   <ul>
-                    <li>Extensive network of qualified professionals</li>
-                    <li>Rigorous screening and verification process</li>
-                    <li>Quick turnaround time</li>
-                    <li>Post-placement support</li>
-                    <li>Competitive pricing</li>
+                    {service.items.map((item, idx) => (
+                      <li key={idx}>
+                        <span className="checkmark">✓</span>
+                        {item}
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>

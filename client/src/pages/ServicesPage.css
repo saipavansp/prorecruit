@@ -190,31 +190,35 @@
 }
 
 /* Service Benefits */
-.service-benefits h3 {
-  color: var(--color-dark);
-  margin-bottom: 1rem;
-  font-size: 1.25rem;
-}
-
-.service-benefits ul {
+.service-items-list ul {
   list-style: none;
   padding: 0;
+  display: grid;
+  gap: 0.75rem;
 }
 
-.service-benefits li {
-  padding: 0.5rem 0;
-  padding-left: 1.5rem;
-  position: relative;
-  color: var(--color-secondary);
+.service-items-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background-color: rgba(93, 173, 226, 0.05);
+  border-radius: var(--border-radius-md);
+  color: var(--color-dark);
   line-height: 1.6;
+  transition: all var(--transition-fast);
 }
 
-.service-benefits li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: var(--color-success);
+.service-items-list li:hover {
+  background-color: rgba(93, 173, 226, 0.1);
+  transform: translateX(5px);
+}
+
+.service-items-list .checkmark {
+  color: #6ABF4B;
   font-weight: bold;
+  font-size: 1.25rem;
+  flex-shrink: 0;
 }
 
 /* CTA Section */

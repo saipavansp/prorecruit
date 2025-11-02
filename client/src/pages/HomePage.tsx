@@ -52,9 +52,6 @@ const HomePage: React.FC = () => {
                 <Link to="/candidates/register" className="btn btn-primary btn-lg">
                   REGISTER NOW
                 </Link>
-                <Link to="/jobs" className="btn btn-outline btn-lg">
-                  BROWSE JOBS
-                </Link>
               </div>
             </motion.div>
 
@@ -93,45 +90,45 @@ const HomePage: React.FC = () => {
           
           <div className="services-grid">
             <ServiceCard
-              icon={FaLaptopCode}
-              title={SERVICES.IT.title}
-              description={SERVICES.IT.description}
-              link="/services#it-recruitment"
+              icon={FaBriefcase}
+              title={SERVICES.CONSUMER.title}
+              description="Staffing solutions for consumer-focused industries"
+              link="/services#consumer-sector"
               delay={0.1}
             />
             <ServiceCard
-              icon={FaHeadset}
-              title={SERVICES.NON_IT.title}
-              description={SERVICES.NON_IT.description}
-              link="/services#non-it-recruitment"
+              icon={FaUsers}
+              title={SERVICES.INDUSTRIAL.title}
+              description="Recruitment for industrial and manufacturing sectors"
+              link="/services#industrial-sector"
               delay={0.2}
             />
             <ServiceCard
-              icon={FaBriefcase}
-              title={SERVICES.PERMANENT.title}
-              description={SERVICES.PERMANENT.description}
-              link="/services#permanent-staffing"
+              icon={FaHandshake}
+              title={SERVICES.RETAIL.title}
+              description="Staffing for retail, ecommerce, and hospitality"
+              link="/services#retail-ecommerce"
               delay={0.3}
             />
             <ServiceCard
-              icon={FaHandshake}
-              title={SERVICES.CONTRACT.title}
-              description={SERVICES.CONTRACT.description}
-              link="/services#contract-staffing"
+              icon={FaHeadset}
+              title={SERVICES.EMERGING.title}
+              description="Recruitment for agriculture and emerging sectors"
+              link="/services#emerging-sector"
               delay={0.4}
             />
             <ServiceCard
-              icon={FaChartLine}
-              title={SERVICES.EXECUTIVE.title}
-              description={SERVICES.EXECUTIVE.description}
-              link="/services#executive-search"
+              icon={FaLaptopCode}
+              title={SERVICES.IT_SECTOR.title}
+              description="IT professionals and technology talent"
+              link="/services#it-sector"
               delay={0.5}
             />
             <ServiceCard
-              icon={FaUsers}
-              title={SERVICES.VOLUME.title}
-              description={SERVICES.VOLUME.description}
-              link="/services#volume-hiring"
+              icon={FaUserTie}
+              title={SERVICES.TELECOM.title}
+              description="Telecom and communication specialists"
+              link="/services#telecom-sector"
               delay={0.6}
             />
           </div>

@@ -119,32 +119,68 @@ export const COMPANY_STATS = [
   { label: 'Success Rate', value: 95, suffix: '%' }
 ];
 
-// Services
+// Services - Sector-based Staffing
 export const SERVICES = {
-  IT: {
-    title: 'IT Recruitment',
-    description: 'Specialized recruitment for technology professionals',
-    skills: IT_SKILLS
+  CONSUMER: {
+    title: 'Consumer Sector Staffing',
+    items: [
+      'Contractual or temporary staffing',
+      'Payroll support services',
+      'HR administrative solutions',
+      'Consumer Goods and Durables / Home Appliances',
+      'Consumer Products / FMCG',
+      'Healthcare / Para-Medical Services'
+    ]
   },
-  NON_IT: {
-    title: 'Non-IT Recruitment',
-    description: 'Comprehensive recruitment for BPO, KPO, and other sectors',
-    skills: NON_IT_SKILLS
+  INDUSTRIAL: {
+    title: 'Industrial Sector Staffing',
+    items: [
+      'Contractual or temporary staffing',
+      'Payroll support services',
+      'HR administrative solutions',
+      'Automobile/Automotive/Auto Components',
+      'Engineering / Procurement & Construction',
+      'Infrastructure / Utilities'
+    ]
   },
-  PERMANENT: {
-    title: 'Permanent Staffing',
-    description: 'Finding the right permanent employees for your organization'
+  RETAIL: {
+    title: 'Retail & Ecommerce Sector Staffing',
+    items: [
+      'Contractual or temporary staffing',
+      'Payroll support services',
+      'HR administrative solutions',
+      'Retail and E - Commerce',
+      'Hospitality-Hotel / Resorts / Restaurants',
+      'Transportation (Surface / Air / Marine)'
+    ]
   },
-  CONTRACT: {
-    title: 'Contract Staffing',
-    description: 'Flexible staffing solutions for project-based requirements'
+  EMERGING: {
+    title: 'Emerging Sector Staffing',
+    items: [
+      'Contractual or temporary staffing',
+      'Payroll support services',
+      'HR administrative solutions',
+      'Agriculture / Forestry',
+      'Dairy / Poultry / Fishery'
+    ]
   },
-  EXECUTIVE: {
-    title: 'Executive Search',
-    description: 'Specialized recruitment for senior leadership positions'
+  IT_SECTOR: {
+    title: 'IT Sector Staffing',
+    items: [
+      'Temporary & permanent staffing',
+      'Consulting',
+      'IT infrastructure management',
+      'Offshore Development and Quality Assurance'
+    ]
   },
-  VOLUME: {
-    title: 'Volume Hiring',
-    description: 'Large-scale recruitment for expanding organizations'
+  TELECOM: {
+    title: 'Telecom Sector Staffing',
+    items: [
+      'IT telecom recruitment',
+      'Consulting and training',
+      'NOC & global NOC',
+      'Telecom integration & radio frequency',
+      'Telecom & ISP'
+    ]
   }
 };
