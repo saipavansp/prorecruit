@@ -68,10 +68,12 @@ const CandidateRegistrationPageNew: React.FC = () => {
 
   const handleNext = () => {
     setCurrentStep(prev => prev + 1);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handlePrevious = () => {
     setCurrentStep(prev => prev - 1);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {

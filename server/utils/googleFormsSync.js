@@ -68,9 +68,10 @@ exports.syncToGoogleForms = async (candidate) => {
     ];
     
     // Append to appropriate Google Sheet
+    // Using A:P range without sheet name - works with any sheet name
     const response = await sheets.spreadsheets.values.append({
       spreadsheetId: sheetId,
-      range: 'Sheet1!A:P', // Adjust if your sheet has different name
+      range: 'A:P',
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: [rowData]

@@ -4,9 +4,13 @@ const fs = require('fs').promises;
 
 // Create transporter
 const createTransporter = () => {
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+    throw new Error('Email credentials not configured');
+  }
+  
   return nodemailer.createTransporter({
     host: process.env.EMAIL_HOST || 'smtp.gmail.com',
-    port: process.env.EMAIL_PORT || 587,
+    port: parseInt(process.env.EMAIL_PORT) || 587,
     secure: false,
     auth: {
       user: process.env.EMAIL_USER,
