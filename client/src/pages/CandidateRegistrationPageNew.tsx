@@ -125,6 +125,9 @@ const CandidateRegistrationPageNew: React.FC = () => {
 
       // Experience (ONLY for Experienced)
       if (candidateType === 'Experienced') {
+        if (data.totalExperience !== undefined) formData.append('totalExperience', String(data.totalExperience));
+        if (data.currentCTC !== undefined) formData.append('currentCTC', String(data.currentCTC));
+        if (data.expectedCTC !== undefined) formData.append('expectedCTC', String(data.expectedCTC));
         if (data.currentCompany) formData.append('currentCompany', data.currentCompany);
         if (data.currentDesignation) formData.append('currentDesignation', data.currentDesignation);
         if (data.joiningDate) formData.append('joiningDate', data.joiningDate);
@@ -369,13 +372,28 @@ const CandidateRegistrationPageNew: React.FC = () => {
                   <div className="form-grid">
                     <div className="form-group">
                       <label className="form-label">Company Name *</label>
-                      <input type="text" className={`form-control ${errors.currentCompany ? 'error' : ''}`} {...register('currentCompany', { required: candidateType === 'Experienced' ? 'Required' : false })} />
+                      <input type="text" className={`form-control ${errors.currentCompany ? 'error' : ''}`} {...register('currentCompany', { required: 'Required' })} />
                       {errors.currentCompany && <span className="form-error">{errors.currentCompany.message}</span>}
                     </div>
                     <div className="form-group">
                       <label className="form-label">Designation *</label>
-                      <input type="text" className={`form-control ${errors.currentDesignation ? 'error' : ''}`} {...register('currentDesignation', { required: candidateType === 'Experienced' ? 'Required' : false })} />
+                      <input type="text" className={`form-control ${errors.currentDesignation ? 'error' : ''}`} {...register('currentDesignation', { required: 'Required' })} />
                       {errors.currentDesignation && <span className="form-error">{errors.currentDesignation.message}</span>}
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Total Experience (Years) *</label>
+                      <input type="number" className={`form-control ${errors.totalExperience ? 'error' : ''}`} {...register('totalExperience', { required: 'Required', min: 0 })} step="0.1" />
+                      {errors.totalExperience && <span className="form-error">{errors.totalExperience.message}</span>}
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Current CTC (LPA) *</label>
+                      <input type="number" className={`form-control ${errors.currentCTC ? 'error' : ''}`} {...register('currentCTC', { required: 'Required', min: 0 })} step="0.1" />
+                      {errors.currentCTC && <span className="form-error">{errors.currentCTC.message}</span>}
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Expected CTC (LPA) *</label>
+                      <input type="number" className={`form-control ${errors.expectedCTC ? 'error' : ''}`} {...register('expectedCTC', { required: 'Required', min: 0 })} step="0.1" />
+                      {errors.expectedCTC && <span className="form-error">{errors.expectedCTC.message}</span>}
                     </div>
                     <div className="form-group">
                       <label className="form-label">Joining Date</label>
@@ -391,7 +409,7 @@ const CandidateRegistrationPageNew: React.FC = () => {
                     </div>
                     <div className="form-group">
                       <label className="form-label">Notice Period *</label>
-                      <select className={`form-control ${errors.noticePeriod ? 'error' : ''}`} {...register('noticePeriod', { required: candidateType === 'Experienced' ? 'Required' : false })}>
+                      <select className={`form-control ${errors.noticePeriod ? 'error' : ''}`} {...register('noticePeriod', { required: 'Required' })}>
                         <option value="">Select Notice Period</option>
                         {NOTICE_PERIODS.map(p => <option key={p} value={p}>{p}</option>)}
                       </select>
@@ -424,19 +442,38 @@ const CandidateRegistrationPageNew: React.FC = () => {
 
             {/* Navigation */}
             <div className="form-navigation">
-              <button type="button" className="btn btn-outline" onClick={handlePrevious} disabled={currentStep === 0}>
+              <button type="button" className="btn btn-outline" onClick={handlePrevious} disabled={currentStep === 0 || isSubmitting}>
                 Previous
               </button>
               {currentStep === steps.length - 1 ? (
                 <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
-                  {isSubmitting ? 'Submitting...' : 'Submit Application'}
+                  {isSubmitting ? (
+                    <>
+                      <span className="spinner"></span> Submitting Application...
+                    </>
+                  ) : 'Submit Application'}
                 </button>
               ) : (
-                <button type="button" className="btn btn-primary" onClick={handleNext}>
+                <button type="button" className="btn btn-primary" onClick={handleNext} disabled={isSubmitting}>
                   Next
                 </button>
               )}
             </div>
+
+            {isSubmitting && (
+              <div className="submission-overlay">
+                <div className="submission-modal">
+                  <div className="spinner-large"></div>
+                  <h3>Processing Your Application</h3>
+                  <p>Please wait while we submit your registration...</p>
+                  <div className="submission-steps">
+                    <div className="submission-step">✓ Validating information</div>
+                    <div className="submission-step">✓ Uploading resume</div>
+                    <div className="submission-step active">⏳ Saving to database...</div>
+                  </div>
+                </div>
+              </div>
+            )}
           </form>
         </motion.div>
       </div>
