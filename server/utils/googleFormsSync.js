@@ -47,24 +47,24 @@ exports.syncToGoogleForms = async (candidate) => {
       return;
     }
     
-    // Prepare data for Google Sheets
+    // Prepare data for Google Sheets - ensure all values are strings or numbers
     const rowData = [
       new Date().toISOString(), // Timestamp
-      candidate._id.toString(), // ID
-      candidate.candidateType || (candidate.totalExperience ? 'Experienced' : 'Fresher'), // Type
-      candidate.firstName, // First Name
-      candidate.lastName, // Last Name
-      candidate.email, // Email
-      candidate.phone, // Phone
-      candidate.fullNameAadhar || '', // Aadhar Name
-      candidate.skills.join(', '), // Skills
-      candidate.address || '', // Address
-      candidate.education?.highestQualification || '', // Education
-      candidate.currentCompany || '', // Company
-      candidate.currentDesignation || '', // Designation
-      candidate.currentSalary || candidate.currentCTC || '', // Salary
-      candidate.noticePeriod || '', // Notice Period
-      candidate.status || 'New' // Status
+      String(candidate._id || Date.now()), // ID
+      String(candidate.candidateType || (candidate.totalExperience ? 'Experienced' : 'Fresher')), // Type
+      String(candidate.firstName || ''), // First Name
+      String(candidate.lastName || ''), // Last Name
+      String(candidate.email || ''), // Email
+      String(candidate.phone || ''), // Phone
+      String(candidate.fullNameAadhar || ''), // Aadhar Name
+      Array.isArray(candidate.skills) ? candidate.skills.join(', ') : String(candidate.skills || ''), // Skills
+      String(candidate.address || ''), // Address
+      String(candidate.education?.highestQualification || ''), // Education
+      String(candidate.currentCompany || ''), // Company
+      String(candidate.currentDesignation || ''), // Designation
+      String(candidate.currentSalary || candidate.currentCTC || ''), // Salary
+      String(candidate.noticePeriod || ''), // Notice Period
+      String(candidate.status || 'New') // Status
     ];
     
     // Append to appropriate Google Sheet
