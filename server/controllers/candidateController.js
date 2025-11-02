@@ -110,37 +110,26 @@ exports.registerCandidate = async (req, res) => {
     const candidate = new Candidate(candidateData);
     await candidate.save();
     
-    // Send confirmation email to candidate (don't fail if email service not configured)
+    // Send notification to ADMIN ONLY (don't fail if email service not configured)
     try {
       await sendEmail({
-        to: candidate.email,
-        subject: 'Registration Successful - Pro Recruit Technologies',
-        template: 'candidateRegistration',
-        data: {
-          name: candidate.fullName,
-          registrationId: candidate._id
-        }
-      });
-    } catch (emailError) {
-      console.log('Email service not configured or failed:', emailError.message);
-    }
-    
-    // Send notification to admin (don't fail if email service not configured)
-    try {
-      await sendEmail({
-        to: process.env.ADMIN_EMAIL,
-        subject: 'New Candidate Registration',
+        to: process.env.ADMIN_EMAIL || 'info@prorecruittechnologies.com',
+        subject: 'New Candidate Registration - Pro Recruit',
         template: 'adminNotification',
         data: {
           candidateName: candidate.fullName,
+          candidateType: candidate.candidateType || 'N/A',
           email: candidate.email,
           phone: candidate.phone,
-          experience: candidate.totalExperience,
-          skills: candidate.skills.join(', ')
+          experience: candidate.totalExperience || 'Fresher',
+          skills: candidate.skills.join(', '),
+          address: candidate.address || 'Not provided',
+          registrationId: candidate._id
         }
       });
+      console.log('Admin notification email sent successfully');
     } catch (emailError) {
-      console.log('Admin email notification failed:', emailError.message);
+      console.log('Admin email notification failed (email not configured):', emailError.message);
     }
     
     // Sync to Google Forms (async, don't wait)

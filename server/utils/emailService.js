@@ -52,42 +52,62 @@ const templates = {
   }),
 
   adminNotification: (data) => ({
-    subject: 'New Candidate Registration',
+    subject: 'New Candidate Registration - Pro Recruit',
     html: `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-        <div style="background-color: #5DADE2; padding: 20px;">
-          <h2 style="color: white; margin: 0;">New Candidate Registration</h2>
+      <div style="font-family: Arial, sans-serif; max-width: 650px; margin: 0 auto; background-color: #f5f5f5; padding: 20px;">
+        <div style="background: linear-gradient(135deg, #5DADE2 0%, #3498db 100%); padding: 30px; border-radius: 10px 10px 0 0;">
+          <h2 style="color: white; margin: 0; text-align: center;">🎉 New Candidate Registration</h2>
         </div>
-        <div style="padding: 20px; background-color: #f8f9fa;">
-          <h3 style="color: #333;">Candidate Details:</h3>
+        <div style="padding: 30px; background-color: white; border-radius: 0 0 10px 10px;">
+          <h3 style="color: #2C3E50; margin-bottom: 20px;">Candidate Information:</h3>
           <table style="width: 100%; border-collapse: collapse;">
-            <tr>
-              <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Name:</strong></td>
-              <td style="padding: 10px; border-bottom: 1px solid #ddd;">${data.candidateName}</td>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 12px; border-bottom: 1px solid #ddd; font-weight: bold; width: 40%;">Candidate Type:</td>
+              <td style="padding: 12px; border-bottom: 1px solid #ddd;">${data.candidateType || 'Not specified'}</td>
             </tr>
             <tr>
-              <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Email:</strong></td>
-              <td style="padding: 10px; border-bottom: 1px solid #ddd;">${data.email}</td>
+              <td style="padding: 12px; border-bottom: 1px solid #ddd; font-weight: bold;">Name:</td>
+              <td style="padding: 12px; border-bottom: 1px solid #ddd;">${data.candidateName}</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 12px; border-bottom: 1px solid #ddd; font-weight: bold;">Email:</td>
+              <td style="padding: 12px; border-bottom: 1px solid #ddd;"><a href="mailto:${data.email}" style="color: #5DADE2;">${data.email}</a></td>
             </tr>
             <tr>
-              <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Phone:</strong></td>
-              <td style="padding: 10px; border-bottom: 1px solid #ddd;">${data.phone}</td>
+              <td style="padding: 12px; border-bottom: 1px solid #ddd; font-weight: bold;">Phone:</td>
+              <td style="padding: 12px; border-bottom: 1px solid #ddd;"><a href="tel:${data.phone}" style="color: #5DADE2;">${data.phone}</a></td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 12px; border-bottom: 1px solid #ddd; font-weight: bold;">Experience:</td>
+              <td style="padding: 12px; border-bottom: 1px solid #ddd;">${data.experience === 'Fresher' ? 'Fresher' : data.experience + ' years'}</td>
             </tr>
             <tr>
-              <td style="padding: 10px; border-bottom: 1px solid #ddd;"><strong>Experience:</strong></td>
-              <td style="padding: 10px; border-bottom: 1px solid #ddd;">${data.experience} years</td>
+              <td style="padding: 12px; border-bottom: 1px solid #ddd; font-weight: bold;">Skills:</td>
+              <td style="padding: 12px; border-bottom: 1px solid #ddd;">${data.skills}</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 12px; border-bottom: 1px solid #ddd; font-weight: bold;">Address:</td>
+              <td style="padding: 12px; border-bottom: 1px solid #ddd;">${data.address}</td>
             </tr>
             <tr>
-              <td style="padding: 10px;"><strong>Skills:</strong></td>
-              <td style="padding: 10px;">${data.skills}</td>
+              <td style="padding: 12px; font-weight: bold;">Registration ID:</td>
+              <td style="padding: 12px;"><code style="background-color: #f0f0f0; padding: 4px 8px; border-radius: 4px;">${data.registrationId}</code></td>
             </tr>
           </table>
-          <p style="margin-top: 20px;">
-            <a href="${process.env.CLIENT_URL}/admin/candidates" 
-               style="background-color: #5DADE2; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">
-              View in Dashboard
-            </a>
-          </p>
+          
+          <div style="margin-top: 30px; padding: 20px; background-color: #e8f4f8; border-left: 4px solid #5DADE2; border-radius: 5px;">
+            <p style="margin: 0; color: #2C3E50;"><strong>📌 Action Required:</strong></p>
+            <p style="margin: 10px 0 0 0; color: #666;">
+              Review this candidate in your MongoDB dashboard or Google Sheets.
+            </p>
+          </div>
+          
+          <div style="margin-top: 20px; text-align: center;">
+            <p style="color: #999; font-size: 14px;">
+              Sent from Pro Recruit Technologies<br>
+              Automated notification - Do not reply
+            </p>
+          </div>
         </div>
       </div>
     `
