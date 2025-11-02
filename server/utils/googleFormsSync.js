@@ -1,70 +1,76 @@
 const { google } = require('googleapis');
 
-// Initialize Google Forms API
-const initializeGoogleForms = async () => {
+// Initialize Google Sheets API
+const initializeGoogleSheets = async () => {
   try {
-    // In production, use service account or OAuth2
-    // For now, we'll use API key (limited functionality)
+    // Use service account from environment variable
+    const serviceAccountJSON = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
+    
+    if (!serviceAccountJSON) {
+      console.log('Google service account not configured');
+      return null;
+    }
+    
+    const credentials = JSON.parse(serviceAccountJSON);
+    
     const auth = new google.auth.GoogleAuth({
-      keyFile: process.env.GOOGLE_SERVICE_ACCOUNT_KEY_FILE,
-      scopes: ['https://www.googleapis.com/auth/forms', 'https://www.googleapis.com/auth/spreadsheets']
+      credentials: credentials,
+      scopes: ['https://www.googleapis.com/auth/spreadsheets']
     });
     
     const authClient = await auth.getClient();
     
-    return {
-      forms: google.forms({ version: 'v1', auth: authClient }),
-      sheets: google.sheets({ version: 'v4', auth: authClient })
-    };
+    return google.sheets({ version: 'v4', auth: authClient });
   } catch (error) {
-    console.error('Google API initialization error:', error);
+    console.error('Google Sheets initialization error:', error);
     return null;
   }
 };
 
-// Sync candidate data to Google Forms/Sheets
+// Sync candidate data to Google Sheets
 exports.syncToGoogleForms = async (candidate) => {
   try {
-    // Check if Google Forms sync is configured
-    if (!process.env.GOOGLE_SHEET_ID) {
-      console.log('Google Forms sync not configured');
+    // Determine which sheet to use based on candidate type
+    const isFresher = candidate.candidateType === 'Fresher' || !candidate.totalExperience || candidate.totalExperience === 0;
+    const sheetId = isFresher 
+      ? process.env.GOOGLE_SHEET_ID_FRESHERS 
+      : process.env.GOOGLE_SHEET_ID_EXPERIENCED;
+    
+    if (!sheetId) {
+      console.log('Google Sheets sync not configured');
       return;
     }
     
-    const googleAPI = await initializeGoogleForms();
-    if (!googleAPI) {
-      console.log('Google API not initialized');
+    const sheets = await initializeGoogleSheets();
+    if (!sheets) {
+      console.log('Google Sheets not initialized');
       return;
     }
     
     // Prepare data for Google Sheets
     const rowData = [
-      new Date().toISOString(),
-      candidate._id.toString(),
-      candidate.firstName,
-      candidate.lastName,
-      candidate.email,
-      candidate.phone,
-      candidate.totalExperience,
-      candidate.currentCTC,
-      candidate.expectedCTC,
-      candidate.noticePeriod,
-      candidate.currentCompany || '',
-      candidate.currentDesignation || '',
-      candidate.skillCategory,
-      candidate.skills.join(', '),
-      candidate.preferredLocations.join(', '),
-      candidate.openToRelocation ? 'Yes' : 'No',
-      candidate.linkedinProfile || '',
-      candidate.portfolioUrl || '',
-      candidate.status,
-      candidate.source
+      new Date().toISOString(), // Timestamp
+      candidate._id.toString(), // ID
+      candidate.candidateType || (candidate.totalExperience ? 'Experienced' : 'Fresher'), // Type
+      candidate.firstName, // First Name
+      candidate.lastName, // Last Name
+      candidate.email, // Email
+      candidate.phone, // Phone
+      candidate.fullNameAadhar || '', // Aadhar Name
+      candidate.skills.join(', '), // Skills
+      candidate.address || '', // Address
+      candidate.education?.highestQualification || '', // Education
+      candidate.currentCompany || '', // Company
+      candidate.currentDesignation || '', // Designation
+      candidate.currentSalary || candidate.currentCTC || '', // Salary
+      candidate.noticePeriod || '', // Notice Period
+      candidate.status || 'New' // Status
     ];
     
-    // Append to Google Sheets
-    const response = await googleAPI.sheets.spreadsheets.values.append({
-      spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: 'Candidates!A:T', // Adjust range based on your sheet
+    // Append to appropriate Google Sheet
+    const response = await sheets.spreadsheets.values.append({
+      spreadsheetId: sheetId,
+      range: 'Sheet1!A:P', // Adjust if your sheet has different name
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: [rowData]
