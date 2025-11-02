@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { FaBriefcase, FaUsers, FaHandshake, FaChartLine, FaLaptopCode, FaHeadset } from 'react-icons/fa';
+import { FaBriefcase, FaUsers, FaHandshake, FaChartLine, FaLaptopCode, FaHeadset, FaUserTie } from 'react-icons/fa';
 import AnimatedCounter from '../components/Common/AnimatedCounter';
 import ServiceCard from '../components/Common/ServiceCard';
 import TestimonialSlider from '../components/Common/TestimonialSlider';
