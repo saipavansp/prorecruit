@@ -107,8 +107,15 @@ exports.registerCandidate = async (req, res) => {
       preferredLocations: preferredLocationsArray
     };
     
-    const candidate = new Candidate(candidateData);
-    await candidate.save();
+    // Create candidate object (without saving to MongoDB for now)
+    const candidate = {
+      ...candidateData,
+      _id: Date.now().toString(), // Temporary ID
+      fullName: `${candidateData.firstName} ${candidateData.lastName}`,
+      createdAt: new Date().toISOString()
+    };
+    
+    console.log('Candidate registration received:', candidate.fullName);
     
     // Send confirmation email to CANDIDATE
     try {
@@ -121,7 +128,7 @@ exports.registerCandidate = async (req, res) => {
           registrationId: candidate._id
         }
       });
-      console.log('Candidate confirmation email sent');
+      console.log('Candidate confirmation email sent to:', candidate.email);
     } catch (emailError) {
       console.log('Candidate email failed:', emailError.message);
     }
@@ -143,14 +150,14 @@ exports.registerCandidate = async (req, res) => {
           registrationId: candidate._id
         }
       });
-      console.log('Admin notification email sent');
+      console.log('Admin notification email sent to:', process.env.ADMIN_EMAIL);
     } catch (emailError) {
       console.log('Admin email failed:', emailError.message);
     }
     
-    // Sync to Google Forms (async, don't wait)
+    // Sync to Google Sheets (async, don't wait)
     syncToGoogleForms(candidate).catch(err => 
-      console.error('Google Forms sync error:', err)
+      console.log('Google Sheets sync:', err.message)
     );
     
     res.status(201).json({

@@ -47,13 +47,16 @@ app.use(fileUpload({
 // Data sanitization against NoSQL query injection
 app.use(mongoSanitize());
 
-// MongoDB connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/pro-recruit', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('MongoDB connected successfully'))
-.catch(err => console.error('MongoDB connection error:', err));
+// MongoDB connection - DISABLED FOR NOW
+// Will be enabled later when database is configured
+// mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/pro-recruit', {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true
+// })
+// .then(() => console.log('MongoDB connected successfully'))
+// .catch(err => console.error('MongoDB connection error:', err));
+
+console.log('MongoDB connection disabled - Email and Sheets will work without database');
 
 // Routes
 app.use('/api/candidates', candidateRoutes);
