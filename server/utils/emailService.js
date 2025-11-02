@@ -1,7 +1,8 @@
 const nodemailer = require('nodemailer');
-console.log('✓ Nodemailer loaded successfully');
+console.log('✓ Nodemailer loaded');
 console.log('Nodemailer type:', typeof nodemailer);
-console.log('Has createTransporter:', typeof nodemailer?.createTransporter);
+console.log('createTransporter type:', typeof nodemailer?.createTransporter);
+console.log('Nodemailer keys:', nodemailer ? Object.keys(nodemailer).slice(0, 10) : 'null');
 
 let ejs;
 
