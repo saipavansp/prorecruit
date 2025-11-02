@@ -30,13 +30,16 @@ const initializeGoogleSheets = async () => {
 // Sync candidate data to Google Sheets
 exports.syncToGoogleForms = async (candidate) => {
   try {
-    // Determine which sheet to use based on candidate type
+    // Determine which sheet name to use based on candidate type
     const isFresher = candidate.candidateType === 'Fresher' || !candidate.totalExperience || candidate.totalExperience === 0;
-    const sheetId = isFresher 
-      ? process.env.GOOGLE_SHEET_ID_FRESHERS 
-      : process.env.GOOGLE_SHEET_ID_EXPERIENCED;
+    const sheetName = isFresher 
+      ? 'Pro Recruit - Candidates freshers'
+      : 'Pro Recruit - Candidates exp';
     
-    if (!sheetId) {
+    // Use the same spreadsheet ID for both (different sheets/tabs within same file)
+    const spreadsheetId = process.env.GOOGLE_SHEET_ID || '1Vb9i3bMnHoDdNJqk7ojPPXlylveLqfav1o-Nnt0vhA8';
+    
+    if (!spreadsheetId) {
       console.log('Google Sheets sync not configured');
       return;
     }
@@ -67,11 +70,10 @@ exports.syncToGoogleForms = async (candidate) => {
       String(candidate.status || 'New') // Status
     ];
     
-    // Append to appropriate Google Sheet
-    // Using A:P range without sheet name - works with any sheet name
+    // Append to appropriate Google Sheet tab
     const response = await sheets.spreadsheets.values.append({
-      spreadsheetId: sheetId,
-      range: 'A:P',
+      spreadsheetId: spreadsheetId,
+      range: `'${sheetName}'!A:P`,
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values: [rowData]
