@@ -65,7 +65,12 @@ app.use('/api/contact', contactRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'OK', message: 'Server is running' });
+  res.json({ 
+    status: 'OK', 
+    message: 'Server is running',
+    emailConfigured: !!(process.env.EMAIL_USER && process.env.EMAIL_PASSWORD),
+    sheetsConfigured: !!process.env.GOOGLE_SERVICE_ACCOUNT_JSON
+  });
 });
 
 // Error handling middleware
