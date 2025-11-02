@@ -1,13 +1,9 @@
-let nodemailer;
-let ejs;
+const nodemailer = require('nodemailer');
+console.log('✓ Nodemailer loaded successfully');
+console.log('Nodemailer type:', typeof nodemailer);
+console.log('Has createTransporter:', typeof nodemailer?.createTransporter);
 
-try {
-  nodemailer = require('nodemailer');
-  console.log('✓ Nodemailer loaded successfully');
-} catch (error) {
-  console.error('✗ Nodemailer failed to load:', error.message);
-  nodemailer = null;
-}
+let ejs;
 
 try {
   ejs = require('ejs');
@@ -22,19 +18,11 @@ const fs = require('fs').promises;
 
 // Create transporter
 const createTransporter = () => {
-  if (!nodemailer) {
-    throw new Error('Nodemailer module not available - please install: npm install nodemailer');
-  }
-  
   if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
-    throw new Error('Email credentials not configured in environment variables');
+    throw new Error('Email credentials not configured');
   }
   
-  if (typeof nodemailer.createTransporter !== 'function') {
-    throw new Error('Nodemailer createTransporter is not a function - module may be corrupted');
-  }
-  
-  return nodemailer.createTransporter({
+  const config = {
     host: process.env.EMAIL_HOST || 'smtp.gmail.com',
     port: parseInt(process.env.EMAIL_PORT) || 587,
     secure: false,
@@ -42,7 +30,9 @@ const createTransporter = () => {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASSWORD
     }
-  });
+  };
+  
+  return nodemailer.createTransporter(config);
 };
 
 // Email templates
