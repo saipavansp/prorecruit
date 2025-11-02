@@ -1,10 +1,20 @@
 let nodemailer;
+let ejs;
+
 try {
   nodemailer = require('nodemailer');
   console.log('✓ Nodemailer loaded successfully');
 } catch (error) {
   console.error('✗ Nodemailer failed to load:', error.message);
   nodemailer = null;
+}
+
+try {
+  ejs = require('ejs');
+  console.log('✓ EJS loaded successfully');
+} catch (error) {
+  console.error('✗ EJS failed to load:', error.message);
+  ejs = null;
 }
 
 const path = require('path');
