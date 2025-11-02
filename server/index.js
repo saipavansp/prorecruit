@@ -14,6 +14,9 @@ const contactRoutes = require('./routes/contactRoutes');
 
 const app = express();
 
+// Trust proxy - required for Render deployment
+app.set('trust proxy', 1);
+
 // Security middleware
 app.use(helmet());
 

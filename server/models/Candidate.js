@@ -85,7 +85,6 @@ const candidateSchema = new mongoose.Schema({
   }],
   skillCategory: {
     type: String,
-    required: true,
     enum: ['IT', 'Non-IT']
   },
   
