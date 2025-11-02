@@ -433,7 +433,9 @@ const CandidateRegistrationPageNew: React.FC = () => {
                           <span>{resumeFile ? resumeFile.name : 'Choose file'}</span>
                         </label>
                       </div>
-                      {!resumeFile && <span className="form-error">Resume is required</span>}
+                      <p style={{ fontSize: '0.875rem', color: '#666', marginTop: '0.5rem' }}>
+                        Please upload your resume to complete registration
+                      </p>
                     </div>
                   </div>
                 </motion.div>

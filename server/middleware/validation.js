@@ -41,17 +41,17 @@ exports.validateCandidate = [
     .matches(/^[6-9]\d{9}$/).withMessage('Please provide a valid Indian phone number'),
   
   body('totalExperience')
-    .notEmpty().withMessage('Total experience is required')
+    .optional()
     .isNumeric().withMessage('Experience must be a number')
     .isFloat({ min: 0 }).withMessage('Experience cannot be negative'),
   
   body('currentCTC')
-    .notEmpty().withMessage('Current CTC is required')
+    .optional()
     .isNumeric().withMessage('Current CTC must be a number')
     .isFloat({ min: 0 }).withMessage('Current CTC cannot be negative'),
   
   body('expectedCTC')
-    .notEmpty().withMessage('Expected CTC is required')
+    .optional()
     .isNumeric().withMessage('Expected CTC must be a number')
     .isFloat({ min: 0 }).withMessage('Expected CTC cannot be negative'),
   
@@ -60,29 +60,22 @@ exports.validateCandidate = [
     .trim(),
   
   body('noticePeriod')
-    .notEmpty().withMessage('Notice period is required')
+    .optional()
     .isIn(['Immediate', '15 days', '30 days', '60 days', '90 days', 'More than 90 days'])
     .withMessage('Invalid notice period'),
   
+  body('candidateType')
+    .optional()
+    .isIn(['Fresher', 'Experienced']).withMessage('Candidate type must be Fresher or Experienced'),
+  
   body('skillCategory')
-    .notEmpty().withMessage('Skill category is required')
-    .isIn(['IT', 'Non-IT']).withMessage('Skill category must be IT or Non-IT'),
+    .optional(),
   
   body('skills')
-    .custom((value) => {
-      if (!value || (Array.isArray(value) && value.length === 0)) {
-        throw new Error('At least one skill is required');
-      }
-      return true;
-    }),
+    .optional(),
   
   body('preferredLocations')
-    .custom((value) => {
-      if (!value || (Array.isArray(value) && value.length === 0)) {
-        throw new Error('At least one preferred location is required');
-      }
-      return true;
-    }),
+    .optional(),
   
   // Address validation (optional but typed)
   body('address.street').optional().trim(),
