@@ -8,7 +8,7 @@ import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
 import JobsPage from './pages/JobsPage';
 import JobDetailPage from './pages/JobDetailPage';
-import CandidateRegistrationPage from './pages/CandidateRegistrationPage';
+import CandidateRegistrationPage from './pages/CandidateRegistrationPageNew';
 import ContactPage from './pages/ContactPage';
 import NotFoundPage from './pages/NotFoundPage';
 import 'react-toastify/dist/ReactToastify.css';
