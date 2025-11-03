@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "build": "npm install",
+    "build": "npm ci --production=false && npm rebuild",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

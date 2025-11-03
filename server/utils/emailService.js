@@ -33,7 +33,17 @@ const createTransporter = () => {
     }
   };
   
-  return nodemailer.createTransporter(config);
+  // Handle different nodemailer module structures
+  if (typeof nodemailer === 'function') {
+    return nodemailer(config);
+  } else if (nodemailer && typeof nodemailer.createTransport === 'function') {
+    return nodemailer.createTransport(config);
+  } else if (nodemailer && typeof nodemailer.createTransporter === 'function') {
+    return nodemailer.createTransporter(config);
+  } else {
+    console.error('Nodemailer structure:', nodemailer);
+    throw new Error('Nodemailer module not loaded correctly');
+  }
 };
 
 // Email templates
