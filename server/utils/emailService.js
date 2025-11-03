@@ -120,16 +120,47 @@ const templates = {
               <td style="padding: 12px; border-bottom: 1px solid #ddd; font-weight: bold;">Address:</td>
               <td style="padding: 12px; border-bottom: 1px solid #ddd;">${data.address}</td>
             </tr>
+            ${data.candidateType === 'Experienced' ? `
             <tr>
+              <td style="padding: 12px; border-bottom: 1px solid #ddd; font-weight: bold;">Current Company:</td>
+              <td style="padding: 12px; border-bottom: 1px solid #ddd;">${data.currentCompany}</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 12px; border-bottom: 1px solid #ddd; font-weight: bold;">Current CTC:</td>
+              <td style="padding: 12px; border-bottom: 1px solid #ddd;">${data.currentCTC}</td>
+            </tr>
+            <tr>
+              <td style="padding: 12px; border-bottom: 1px solid #ddd; font-weight: bold;">Expected CTC:</td>
+              <td style="padding: 12px; border-bottom: 1px solid #ddd;">${data.expectedCTC}</td>
+            </tr>
+            <tr style="background-color: #f8f9fa;">
+              <td style="padding: 12px; border-bottom: 1px solid #ddd; font-weight: bold;">Notice Period:</td>
+              <td style="padding: 12px; border-bottom: 1px solid #ddd;">${data.noticePeriod}</td>
+            </tr>
+            ` : ''}
+            <tr ${data.candidateType === 'Experienced' ? '' : 'style="background-color: #f8f9fa;"'}>
+              <td style="padding: 12px; border-bottom: 1px solid #ddd; font-weight: bold;">Highest Education:</td>
+              <td style="padding: 12px; border-bottom: 1px solid #ddd;">${data.highestEducation}</td>
+            </tr>
+            <tr ${data.candidateType === 'Experienced' ? 'style="background-color: #f8f9fa;"' : ''}>
               <td style="padding: 12px; font-weight: bold;">Registration ID:</td>
               <td style="padding: 12px;"><code style="background-color: #f0f0f0; padding: 4px 8px; border-radius: 4px;">${data.registrationId}</code></td>
             </tr>
           </table>
           
+          ${data.hasResume ? `
+          <div style="margin-top: 30px; padding: 20px; background-color: #f0f8ff; border-left: 4px solid #4CAF50; border-radius: 5px;">
+            <p style="margin: 0; color: #2C3E50;"><strong>📎 Resume Attached:</strong></p>
+            <p style="margin: 10px 0 0 0; color: #666;">
+              The candidate's resume is attached to this email for your review.
+            </p>
+          </div>
+          ` : ''}
+          
           <div style="margin-top: 30px; padding: 20px; background-color: #e8f4f8; border-left: 4px solid #5DADE2; border-radius: 5px;">
             <p style="margin: 0; color: #2C3E50;"><strong>📌 Action Required:</strong></p>
             <p style="margin: 10px 0 0 0; color: #666;">
-              Review this candidate in your MongoDB dashboard or Google Sheets.
+              Review this candidate in your Google Sheets dashboard.
             </p>
           </div>
           
@@ -270,7 +301,7 @@ const templates = {
 };
 
 // Send email function
-exports.sendEmail = async ({ to, subject, template, data, html, text }) => {
+exports.sendEmail = async ({ to, subject, template, data, html, text, attachments }) => {
   try {
     const transporter = createTransporter();
     
@@ -290,6 +321,11 @@ exports.sendEmail = async ({ to, subject, template, data, html, text }) => {
       html: emailContent.html || html,
       text: emailContent.text || text
     };
+    
+    // Add attachments if provided
+    if (attachments) {
+      mailOptions.attachments = attachments;
+    }
     
     // Send email
     const info = await transporter.sendMail(mailOptions);

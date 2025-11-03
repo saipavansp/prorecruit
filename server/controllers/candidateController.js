@@ -133,11 +133,32 @@ exports.registerCandidate = async (req, res) => {
       console.log('Candidate email failed:', emailError.message);
     }
     
-    // Send detailed notification to ADMIN
+    // Send detailed notification to ADMIN with resume attachment
     try {
+      // Prepare attachments array
+      const attachments = [];
+      
+      // Add main resume if exists
+      if (resumeFileName && resumeUrl) {
+        const resumePath = path.join(__dirname, '../uploads', resumeFileName);
+        attachments.push({
+          filename: resumeFileName,
+          path: resumePath
+        });
+      }
+      
+      // Add latest resume if exists and different from main resume
+      if (latestResumeFileName && latestResumeUrl && latestResumeFileName !== resumeFileName) {
+        const latestResumePath = path.join(__dirname, '../uploads', latestResumeFileName);
+        attachments.push({
+          filename: latestResumeFileName,
+          path: latestResumePath
+        });
+      }
+      
       await sendEmail({
         to: process.env.ADMIN_EMAIL || 'suryaraj1045@gmail.com',
-        subject: 'New Candidate Registration - Pro Recruit',
+        subject: `New ${candidate.candidateType} Registration - ${candidate.fullName}`,
         template: 'adminNotification',
         data: {
           candidateName: candidate.fullName,
@@ -145,12 +166,19 @@ exports.registerCandidate = async (req, res) => {
           email: candidate.email,
           phone: candidate.phone,
           experience: candidate.totalExperience || 'Fresher',
-          skills: candidate.skills.join(', '),
+          skills: Array.isArray(candidate.skills) ? candidate.skills.join(', ') : candidate.skills || 'Not provided',
           address: candidate.address || 'Not provided',
-          registrationId: candidate._id
-        }
+          registrationId: candidate._id,
+          currentCompany: candidate.currentCompany || 'N/A',
+          currentCTC: candidate.currentCTC ? `₹${candidate.currentCTC} LPA` : 'N/A',
+          expectedCTC: candidate.expectedCTC ? `₹${candidate.expectedCTC} LPA` : 'N/A',
+          noticePeriod: candidate.noticePeriod || 'N/A',
+          highestEducation: candidate.highestEducation || 'Not provided',
+          hasResume: attachments.length > 0
+        },
+        attachments: attachments.length > 0 ? attachments : undefined
       });
-      console.log('Admin notification email sent to:', process.env.ADMIN_EMAIL);
+      console.log('Admin notification email sent to:', process.env.ADMIN_EMAIL, 'with', attachments.length, 'attachment(s)');
     } catch (emailError) {
       console.log('Admin email failed:', emailError.message);
     }
