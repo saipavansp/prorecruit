@@ -29,9 +29,9 @@ export const COLORS = {
 // Client Logos
 export const CLIENTS = [
   { name: 'Sagility', logo: '/images/clients/sagility.png' },
-  { name: 'Startek', logo: '/images/clients/starktek.png' }, // Note: using your filename
+  { name: 'Startek', logo: '/images/clients/starktek.png' },
   { name: 'iSON', logo: '/images/clients/ison.png' },
-  { name: 'Altruist', logo: '/images/clients/altruist.png' } // Will use placeholder if not added
+  { name: 'Altruist', logo: '/images/clients/altruist.png' }
 ];
 
 // Form Options
