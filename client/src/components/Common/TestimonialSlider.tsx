@@ -50,60 +50,6 @@ const testimonials: Testimonial[] = [
     rating: 5,
     text: "I was impressed by their thorough understanding of both technical and soft skills. They found me a role that perfectly matched my career goals.",
     location: "Chennai"
-  },
-  {
-    id: 5,
-    name: "Vikram Singh",
-    position: "Project Manager",
-    company: "Tech Solutions Inc",
-    rating: 5,
-    text: "Exceptional service! The team at Pro Recruit was always available to answer my questions and provided valuable insights throughout the hiring process.",
-    location: "Bangalore"
-  },
-  {
-    id: 6,
-    name: "Divya Nair",
-    position: "Data Analyst",
-    company: "InfoTech Global",
-    rating: 5,
-    text: "They didn't just find me a job; they found me a career path. The attention to detail and personalized support was outstanding.",
-    location: "Mumbai"
-  },
-  {
-    id: 7,
-    name: "Karthik Venkat",
-    position: "Full Stack Developer",
-    company: "Digital Innovations",
-    rating: 5,
-    text: "Quick, professional, and results-driven. I registered and within a month, I had multiple offers to choose from. Truly making dreams come true!",
-    location: "Bangalore"
-  },
-  {
-    id: 8,
-    name: "Anjali Mehta",
-    position: "HR Specialist",
-    company: "People First Corp",
-    rating: 5,
-    text: "The recruitment process was smooth and transparent. Pro Recruit Technologies kept me informed at every stage and helped negotiate a great package.",
-    location: "Delhi"
-  },
-  {
-    id: 9,
-    name: "Rahul Desai",
-    position: "DevOps Engineer",
-    company: "Cloud Systems Ltd",
-    rating: 5,
-    text: "I appreciate their honesty and dedication. They only presented opportunities that truly matched my skills and aspirations. Highly professional!",
-    location: "Pune"
-  },
-  {
-    id: 10,
-    name: "Pooja Krishnan",
-    position: "QA Lead",
-    company: "Quality Assurance Pro",
-    rating: 5,
-    text: "From registration to placement, everything was seamless. The team's expertise in IT recruitment is evident. Thank you for changing my career!",
-    location: "Bangalore"
   }
 ];
 

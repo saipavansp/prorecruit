@@ -67,6 +67,7 @@ const HomePage: React.FC = () => {
                   src="/images/hero/professional-person.png" 
                   alt="Professional" 
                   className="hero-person-image"
+                  loading="lazy"
                 />
               </div>
             </motion.div>
@@ -210,7 +211,7 @@ const HomePage: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="section-header"
           >
-            <h2>Success Stories</h2>
+            <h2>Testimonials</h2>
             <p>Hear from candidates who found their dream jobs through us</p>
           </motion.div>
           

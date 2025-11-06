@@ -84,6 +84,12 @@
 .contact-item a {
   color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
+  pointer-events: auto;
+}
+
+.contact-item a:hover {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
 }
 
 .contact-item span {
