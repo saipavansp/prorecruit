@@ -68,12 +68,20 @@ const CandidateRegistrationPageNew: React.FC = () => {
 
   const handleNext = () => {
     setCurrentStep(prev => prev + 1);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Scroll to form container instead of top
+    const formElement = document.querySelector('.registration-container');
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
   };
 
   const handlePrevious = () => {
     setCurrentStep(prev => prev - 1);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Scroll to form container instead of top
+    const formElement = document.querySelector('.registration-container');
+    if (formElement) {
+      formElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
